@@ -1,0 +1,116 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">IPFS</a>
+
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#" data-toggle="modal" data-target="#upload"><img src="../assets/images/upload.png" title="upload"></a>
+        </li>
+        <li><a href="#"><img src="../assets/images/profile.png" title="Login"></a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container">
+  <section class="player">
+    <div class="row">
+      <div class="col-md-8">
+
+        <div>
+          <video width="100%" controls [src]="selectedVideo.src" autoplay>
+            <!--<source src="{{videoSrc.src}}">-->
+          </video>
+          <div class="description">
+            <h3>{{selectedVideo.title}}</h3>
+            <h5>{{selectedVideo.des}}</h5>
+            <button type="button" class="btn btn-danger"><i class="fa fa-youtube-play" aria-hidden="true"></i>&nbsp;Subscribe
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <ul class="video_list">
+          <li *ngFor="let v of videos" >
+            <a href="#" (click)="playVideo(v)">
+              <div class="row">
+                <div class="col-md-8">
+                  <video>
+                    <source src={{v.src}}>
+                  </video>
+                </div>
+                <div class="col-md-4"><p class="title">{{v.title}}</p></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<div class="modal fade" id="upload" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Upload Video</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="group">
+            <label>Title</label>
+            <input type="text" name="title" class="form-control"  [(ngModel)]="title">
+          </div>
+          <div class="group">
+            <label>Description</label>
+            <textarea class="form-control" name="description"  [(ngModel)]="description"></textarea>
+          </div>
+          <div class="group">
+            <label>Video</label>
+            <input type="file" name="file" class="file"  (change)="uploadVideo($event)">
+            <div class="input-group col-xs-12">
+              <span class="input-group-addon"><i class="fa fa-video-camera"></i></span>
+              <input type="text" class="form-control input-lg" name="fileupload"  disabled placeholder="Upload video">
+              <span class="input-group-btn">
+        <button class="browse btn btn-warning input-lg" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
+      </span>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <!--<div class="modal-footer">
+        <video [hidden]="hideUploadVideo">
+          <source src={{videUpload}}>
+        </video>
+        &lt;!&ndash;<video [src]="videUpload"></video>&ndash;&gt;
+        <button type="button" class="btn btn-warning" (click)="uploadVideo()">Upload</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+      </div>-->
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">Copyright © Company - All rights reserved</p>
+  </div>
+</footer>
+
